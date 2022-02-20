@@ -54,6 +54,7 @@ class Transformer:
 
     def _get_section_value_as_toc(self, section_line: str) -> str:
         result = re.sub(r"\s", "-", self._get_section_value(section_line))
+        result = result.replace("/", "")
         return result.lower()
 
     def _is_line_a_toc_section(self, line: str) -> bool:

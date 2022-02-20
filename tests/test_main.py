@@ -14,6 +14,7 @@ class TestMain(unittest.TestCase):
             [
                 "## Contenidos",
                 "- [Section 1](#section-1)",
+                "- [Section Gnu/Linux](#section-gnulinux)",
                 "- [Section  Finalización](#section--finalización)",
                 "  - [Subsection](#subsection)",
             ],

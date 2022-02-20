@@ -6,6 +6,11 @@ Foo.
 
 Section with leading and trailing spaces.
 
+## Section Gnu/Linux
+
+Section with `/`.
+
+
 ## Section  Finalización
 
 Section with utf-8 character and two blank spaces.
