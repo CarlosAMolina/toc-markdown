@@ -1,0 +1,10 @@
+# Python
+/build/
+/env/
+/dist/
+*.egg-info/
+*.pyc
+
+# Vim
+*.swp
+
