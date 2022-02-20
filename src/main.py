@@ -70,7 +70,9 @@ class Transformer:
 class Loader:
     @staticmethod
     def print_toc(toc: List[str]):
-        for line in toc:
+        print(toc[0])
+        print()
+        for line in toc[1:]:
             print(line)
 
 
