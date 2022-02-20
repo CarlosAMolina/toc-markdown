@@ -1,3 +1,9 @@
+## Contents
+
+- [Introduction](#introduction)
+- [Configuration](#configuration)
+- [References](#references)
+
 ## Introduction
 
 Table of Contents generator for Markdown files.
