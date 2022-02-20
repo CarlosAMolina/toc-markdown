@@ -1,14 +1,20 @@
+import os.path
 import re
+import sys
 from typing import Iterator, List
 
 
 class Extractor:
-    @staticmethod
-    def get_lines_in_file(file: str) -> Iterator[str]:
+    def get_lines_in_file(self, file: str) -> Iterator[str]:
+        self._assert_is_file(file)
         with open(file, "r") as f:
             for line in f.read().splitlines():
                 if len(line) != 0:
                     yield (line)
+
+    def _assert_is_file(self, file: str):
+        if not os.path.isfile(file):
+            raise FileNotFoundError(file)
 
 
 class Transformer:
@@ -67,7 +73,7 @@ class Manager:
     def get_and_print_toc(self, file: str) -> List[str]:
         lines = self._extractor.get_lines_in_file(file)
         toc = self._transformer.get_toc(lines)
-        self._loader.print_toc(lines)
+        self._loader.print_toc(toc)
         return toc
 
 
@@ -76,4 +82,5 @@ def run(file: str):
 
 
 if __name__ == "__main__":
-    run()
+    file = sys.argv[1]
+    run(file)
