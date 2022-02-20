@@ -14,7 +14,7 @@ class Extractor:
 class Transformer:
     _REGEX_INIT_TOC_SECTION = r"^##+\s+"
 
-    def get_toc(self, lines: Iterator[str]):
+    def get_toc(self, lines: Iterator[str]) -> List[str]:
         toc_lines = [
             self._get_section_as_toc(line)
             for line in lines
