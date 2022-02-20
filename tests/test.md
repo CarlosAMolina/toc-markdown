@@ -12,6 +12,11 @@ Section with utf-8 character and two blank spaces.
 
 ### Subsection
 
-Foo bar.
+```bash
+# Code with comment
+## Code comment that looks like a section
+echo hi!
+```
+
 #This is not a section
 

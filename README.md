@@ -14,7 +14,7 @@ You can use the script as a command. Example:
 
 ```bash
 vi ~/.bashrc
-#add: alias toc='python ~/Software/toc-markdown/src/main.py'
+# Add: alias toc='python ~/Software/toc-markdown/src/main.py'
 source ~/.bashrc
 ```
 
