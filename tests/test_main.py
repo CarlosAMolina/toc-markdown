@@ -1,4 +1,6 @@
 import os
+import random
+import string
 import unittest
 
 from src import main
@@ -20,6 +22,23 @@ class TestMain(unittest.TestCase):
             ],
             result,
         )
+
+
+class TestFileModifier(unittest.TestCase):
+    def test_save_at_the_beginning_of_the_file(self):
+        file_path = "/tmp/test-toc-{random_string}.md".format(
+            random_string="".join(
+                [random.choice(string.ascii_lowercase) for x in range(6)]
+            )
+        )
+        file_initial_content = "Line 1\nLine 2"
+        with open(file_path, "w") as f:
+            f.write(file_initial_content)
+        main.FileModifier().save_at_the_beginning_of_the_file(file_path, "foo")
+        with open(file_path, "r") as f:
+            file_final_content = f.read()
+        os.remove(file_path)
+        self.assertEqual("##Contenidos\n" + file_initial_content, file_final_content)
 
 
 if __name__ == "__main__":

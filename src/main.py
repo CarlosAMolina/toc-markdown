@@ -68,6 +68,13 @@ class Transformer:
         return self._is_code_block
 
 
+class FileModifier:
+    def save_at_the_beginning_of_the_file(self, file_path: str, content: str):
+        pass  # TODO
+        # with open(file_path, "w") as f:
+        #    f.write("hi")
+
+
 class Loader:
     @staticmethod
     def print_toc(toc: List[str]):
