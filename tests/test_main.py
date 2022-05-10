@@ -32,13 +32,14 @@ class TestFileModifier(unittest.TestCase):
             )
         )
         file_initial_content = "Line 1\nLine 2"
+        string_to_add = "foo"
         with open(file_path, "w") as f:
             f.write(file_initial_content)
-        main.FileModifier().save_at_the_beginning_of_the_file(file_path, "foo")
+        main.FileModifier().save_at_the_beginning_of_the_file(file_path, string_to_add)
         with open(file_path, "r") as f:
             file_final_content = f.read()
         os.remove(file_path)
-        self.assertEqual("##Contenidos\n" + file_initial_content, file_final_content)
+        self.assertEqual(f"{string_to_add}\n{file_initial_content}", file_final_content)
 
 
 if __name__ == "__main__":

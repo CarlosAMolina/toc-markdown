@@ -69,10 +69,11 @@ class Transformer:
 
 
 class FileModifier:
-    def save_at_the_beginning_of_the_file(self, file_path: str, content: str):
-        pass  # TODO
-        # with open(file_path, "w") as f:
-        #    f.write("hi")
+    def save_at_the_beginning_of_the_file(self, file_path: str, string_to_add: str):
+        with open(file_path, "r") as f:
+            content = f.read()
+        with open(file_path, "w") as f:
+            f.write(f"{string_to_add}\n{content}")
 
 
 class Loader:
