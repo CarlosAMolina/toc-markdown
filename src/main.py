@@ -17,19 +17,28 @@ class Extractor:
             raise FileNotFoundError(file)
 
 
+class Toc:
+    def __init__(self, toc: List[str]):
+        self._toc = toc
+
+    def __repr__(self):
+        lines = "\n".join(self._toc[1:])
+        return f"{self._toc[0]}\n\n{lines}"
+
+
 class Transformer:
     _REGEX_INIT_TOC_SECTION = r"^##+\s+"
 
     def __init__(self):
         self._is_code_block = False
 
-    def get_toc(self, lines: Iterator[str]) -> List[str]:
+    def get_toc(self, lines: Iterator[str]) -> Toc:
         toc_lines = [
             self._get_section_as_toc(line)
             for line in lines
             if self._is_line_a_toc_section(line)
         ]
-        return ["## Contenidos"] + toc_lines
+        return Toc(["## Contenidos"] + toc_lines)
 
     def _get_section_as_toc(self, section_line: str) -> str:
         return "{indentation}- [{section_value}](#{section_as_toc})".format(
@@ -78,11 +87,8 @@ class FileModifier:
 
 class Loader:
     @staticmethod
-    def print_toc(toc: List[str]):
-        print(toc[0])
-        print()
-        for line in toc[1:]:
-            print(line)
+    def print_toc(toc: Toc):
+        print(toc)
 
 
 class Manager:
@@ -91,7 +97,7 @@ class Manager:
         self._transformer = Transformer()
         self._loader = Loader()
 
-    def get_and_print_toc(self, file: str) -> List[str]:
+    def get_and_print_toc(self, file: str) -> Toc:
         lines = self._extractor.get_lines_in_file(file)
         toc = self._transformer.get_toc(lines)
         self._loader.print_toc(toc)

@@ -10,7 +10,7 @@ TEST_FILE_PATH = os.path.join(os.path.dirname(__file__), "test.md")
 
 
 class TestMain(unittest.TestCase):
-    def test_run_without_exceptions(self):
+    def test_run(self):
         result = main.run(TEST_FILE_PATH)
         self.assertEqual(
             [
@@ -20,7 +20,7 @@ class TestMain(unittest.TestCase):
                 "- [Section  Finalización](#section--finalización)",
                 "  - [Subsection](#subsection)",
             ],
-            result,
+            result._toc,
         )
 
 
