@@ -91,7 +91,11 @@ class FileModifier:
 
 
 class Loader:
-    pass
+    def __init__(self):
+        self._file_modifier = FileModifier()
+
+    def save_toc_in_file(self, file_path: str, toc: Toc):
+        self._file_modifier.save_at_the_beginning_of_the_file(file_path, f"{toc.toc}\n")
 
 
 class Manager:
@@ -100,10 +104,11 @@ class Manager:
         self._transformer = Transformer()
         self._loader = Loader()
 
-    def get_and_print_toc(self, file: str) -> Toc:
-        lines = self._extractor.get_lines_in_file(file)
+    def get_and_print_toc(self, file_path: str) -> Toc:
+        lines = self._extractor.get_lines_in_file(file_path)
         toc = self._transformer.get_toc(lines)
         print(toc)
+        self._loader.save_toc_in_file(file_path, toc)
         return toc
 
 
