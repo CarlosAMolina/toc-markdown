@@ -20,7 +20,7 @@ class TestMain(unittest.TestCase):
                 "- [Section  Finalización](#section--finalización)",
                 "  - [Subsection](#subsection)",
             ],
-            result._toc,
+            result._toc_list,
         )
 
 

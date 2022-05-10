@@ -19,11 +19,16 @@ class Extractor:
 
 class Toc:
     def __init__(self, toc: List[str]):
-        self._toc = toc
+        self._toc_list = toc
 
     def __repr__(self):
-        lines = "\n".join(self._toc[1:])
-        return f"{self._toc[0]}\n\n{lines}"
+        return self.toc
+
+    @property
+    def toc(self) -> str:
+        return "{header}\n\n{lines}".format(
+            header=self._toc_list[0], lines="\n".join(self._toc_list[1:])
+        )
 
 
 class Transformer:
@@ -86,9 +91,7 @@ class FileModifier:
 
 
 class Loader:
-    @staticmethod
-    def print_toc(toc: Toc):
-        print(toc)
+    pass
 
 
 class Manager:
@@ -100,7 +103,7 @@ class Manager:
     def get_and_print_toc(self, file: str) -> Toc:
         lines = self._extractor.get_lines_in_file(file)
         toc = self._transformer.get_toc(lines)
-        self._loader.print_toc(toc)
+        print(toc)
         return toc
 
 
